@@ -88,12 +88,13 @@ $(document).ready(function(){
 }
 
 function load(){
+    alert("Loading);
     var translate = new Translate();
     var currentLng = 'en';//'fr'
+	alert(currentLng);
     var attributeName = 'data-tag';
     translate.init(attributeName, currentLng);
     translate.process(); 
-    alert(currentLng);
  }
 
 </script>
