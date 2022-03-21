@@ -88,14 +88,17 @@ $(document).ready(function(){
 }
 
 function load(){
-    alert("Loading);
     var translate = new Translate();
-    var currentLng = 'en';//'fr'
-	alert(currentLng);
+    var currentLng = 'en';
     var attributeName = 'data-tag';
     translate.init(attributeName, currentLng);
     translate.process(); 
+    alert(currentLng);
  }
+
+function switch2Language(lang) {
+  translate.init('data-tag', lang);
+}
 
 </script>
 
@@ -709,6 +712,7 @@ La villa está a 6 km del faro de Ciutadella y a 9 km del faro de Punta Nati. El
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
   <p>&nbsp;© 2021 Ca's Ferrer Monjo&nbsp;-&nbsp; Calle Melancolía 82, 07760 Ciutadella de Menorca - Spain</p>
+  <a href="javascript:switch2Language('es')">Spanish</a>
 </footer>
 
 
