@@ -97,6 +97,7 @@ function load(){
  }
 
 function switch2Language(lang) {
+  var translate = new Translate();
   translate.init('data-tag', lang);
   translate.process(); 
 }
