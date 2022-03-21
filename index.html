@@ -45,6 +45,57 @@ $(document).ready(function(){
     }
   });
 }); 
+
+</script>
+
+<script>
+   function Translate() { 
+    //initialization
+    this.init =  function(attribute, lng){
+        this.attribute = attribute;
+        this.lng = lng;    
+    }
+    //translate 
+    this.process = function(){
+                _self = this;
+                var xrhFile = new XMLHttpRequest();
+                //load content data 
+                xrhFile.open("GET", "./resources/"+this.lng+".json", false);
+                xrhFile.onreadystatechange = function ()
+                {
+                    if(xrhFile.readyState === 4)
+                    {
+                        if(xrhFile.status === 200 || xrhFile.status == 0)
+                        {
+                            var LngObject = JSON.parse(xrhFile.responseText);
+                            console.log(LngObject["name1"]);
+                            var allDom = document.getElementsByTagName("*");
+                            for(var i =0; i < allDom.length; i++){
+                                var elem = allDom[i];
+                                var key = elem.getAttribute(_self.attribute);
+                                 
+                                if(key != null) {
+                                     console.log(key);
+                                     elem.innerHTML = LngObject[key]  ;
+                                }
+                            }
+                     
+                        }
+                    }
+                }
+                xrhFile.send();
+    }    
+}
+
+function load(){
+    var translate = new Translate();
+    var currentLng = 'en';//'fr'
+    var attributeName = 'data-tag';
+    translate.init(attributeName, currentLng);
+    translate.process(); 
+    alert(currentLng);
+ }
+
 </script>
 
 <style type="text/css">
@@ -289,7 +340,7 @@ footer a:hover {
 
 </style>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" onload="load()">
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -348,8 +399,8 @@ La villa está a 6 km del faro de Ciutadella y a 9 km del faro de Punta Nati. El
     <div class="item">
       <img src="images/148340751.jpg" alt="Piscina">
       <div class="carousel-caption">
-        <h3>Piscina</h3>
-        <p>Piscina con solarium y barbacoa.</p>
+        <h3 data-tag="footer1">Piscina</h3>
+        <p data-tag="desc1">Piscina con solarium y barbacoa.</p>
       </div>
     </div>
 
